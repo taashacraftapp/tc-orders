@@ -12,13 +12,105 @@
   --teal:#064A4B; --deep:#03302F; --tint:#EBF5F3;
   --ink:#111111; --muted:#7A7A7A; --border:#E4EEEC; --white:#FFFFFF;
   --red:#C0392B; --edge:14px;
+  --bg:#F7F5F2; --panel:#F7F5F2;
+  --warnBg:#FDF3E7; --warnBd:#E8A33D; --warnTx:#8A5A12;
+  --ph:#8A8A8A; --ph2:#BDBDBD; --xmark:#ccc;
+  --arrow:%23064A4B; --shadow:rgba(0,0,0,.06);
   --serif:"Cormorant Garamond",Georgia,serif;
   --sans:"Nunito Sans",system-ui,sans-serif;
 }
+body.dark{
+  --teal:#54B9AC; --deep:#7FD3C8; --tint:#123A38;
+  --ink:#E8ECEB; --muted:#8FA09D; --border:#2B3634; --white:#151C1B;
+  --red:#FF7A6B;
+  --bg:#0E1312; --panel:#101817;
+  --warnBg:#3A2E18; --warnBd:#8A6A2A; --warnTx:#E9C878;
+  --ph:#6F807D; --ph2:#4E5C5A; --xmark:#4E5C5A;
+  --shadow:rgba(0,0,0,.5);
+}
+body.dark .f select,body.dark .fi select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2354B9AC' stroke-width='1.6'/%3E%3C/svg%3E");
+}
+body.dark .place,body.dark .btn-addset,body.dark #btnSaveSetup{color:#06201E}
+body.dark .bar .tag{color:var(--teal)}
+.addr-head{display:flex;align-items:center;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.addr-sum{font-size:11.5px;color:var(--muted);text-align:right;max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.addr-sum.filled{color:var(--teal);font-weight:600}
+.chev{font-size:13px;color:var(--teal);transition:transform .15s;display:inline-block}
+.chev.open{transform:rotate(90deg)}
+input.bad{border-color:var(--red) !important;box-shadow:inset 0 0 0 1px var(--red) !important}
+.sum-ov{position:fixed;inset:0;z-index:10001;background:#3A3A3A;display:none;flex-direction:column}
+.sum-top{display:flex;align-items:center;gap:10px;padding:12px var(--edge);background:#222;color:#fff;font-size:12px;letter-spacing:.05em}
+.sum-top span{flex:1}
+.sum-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:2px 6px;line-height:1}
+.sum-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px}
+.sum-card{background:#FFFFFF;color:#111;max-width:460px;margin:0 auto;padding:22px 20px 20px;font-family:var(--sans)}
+.sum-brand{font-family:var(--serif);font-size:25px;font-weight:600;color:#064A4B;text-align:center;letter-spacing:.02em}
+.sum-sub{text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7A7A7A;margin-top:3px}
+.sum-rule{border-top:2px solid #064A4B;margin:15px 0 13px}
+.sum-kv{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+.sum-kv .k{color:#7A7A7A}
+.sum-kv .v{font-weight:600;text-align:right}
+.sum-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#064A4B;margin:15px 0 7px}
+.sum-tbl{width:100%;border-collapse:collapse}
+.sum-tbl th{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#7A7A7A;text-align:left;padding:0 3px 5px;border-bottom:1px solid #DDD}
+.sum-tbl td{font-size:13px;padding:8px 3px;border-bottom:1px solid #EEE;vertical-align:top}
+.sum-tbl .r{text-align:right;white-space:nowrap}
+.sum-tbl .c{text-align:center}
+.sum-note{font-size:11px;color:#8A5A12;font-style:italic;padding:0 3px 8px}
+.sum-tot{display:flex;justify-content:space-between;font-size:13.5px;padding:4px 0}
+.sum-tot.big{border-top:2px solid #111;margin-top:7px;padding-top:9px;font-size:17px;font-weight:700}
+.sum-due{background:#FDECEA;border:1px solid #C0392B;color:#C0392B;font-weight:700;text-align:center;padding:9px;margin-top:10px;font-size:14px}
+.sum-paidfull{background:#EBF5F3;border:1px solid #064A4B;color:#064A4B;font-weight:700;text-align:center;padding:9px;margin-top:10px;font-size:13px}
+.sum-foot{border-top:2px solid #064A4B;margin-top:17px;padding-top:13px;text-align:center}
+.sum-wa{font-size:19px;font-weight:700;color:#064A4B;letter-spacing:.02em}
+.sum-walbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7A7A7A;margin-bottom:3px}
+.sum-warn{background:#FDF3E7;border:1px solid #E8A33D;color:#8A5A12;font-size:12px;line-height:1.55;padding:11px;margin-top:12px;text-align:center}
+.btn-sum{background:transparent;border:1px solid #fff;color:#fff;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.orders-btn{background:none;border:1px solid var(--border);color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
+.badge{display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:9px;padding:1px 6px;margin-left:4px;min-width:16px}
+.badge.zero{background:var(--muted)}
+
+/* Confirm bar after sending */
+.confirm-bar{position:fixed;left:0;right:0;top:0;z-index:9998;background:#8A5A12;color:#fff;padding:12px var(--edge);display:none;align-items:center;gap:10px;font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.confirm-bar .cb-txt{flex:1;line-height:1.4}
+.cb-yes,.cb-no{border:none;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:9px 12px;cursor:pointer;white-space:nowrap}
+.cb-yes{background:#fff;color:#8A5A12}
+.cb-no{background:rgba(255,255,255,.2);color:#fff}
+
+/* Orders overlay */
+.ov{position:fixed;inset:0;z-index:9997;background:var(--bg);display:none;flex-direction:column}
+.ov-head{display:flex;align-items:center;gap:10px;padding:14px var(--edge);background:var(--white);border-bottom:1px solid var(--border)}
+.ov-head h2{font-family:var(--serif);font-size:19px;font-weight:600;margin:0;flex:1}
+.ov-exp{background:none;border:1px solid var(--border);color:var(--teal);font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sync-bar{display:flex;align-items:center;gap:10px;padding:10px var(--edge);font-size:12px;border-bottom:1px solid var(--border)}
+.sync-bar span{flex:1;line-height:1.4}
+.sync-bar.ok{background:var(--tint);color:var(--teal)}
+.sync-bar.pend{background:var(--warnBg);color:var(--warnTx)}
+.sync-bar button{background:none;border:1px solid currentColor;color:inherit;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ov-warn{background:var(--warnBg);border:1px solid var(--warnBd);color:var(--warnTx);font-size:11.5px;padding:10px 12px;margin-bottom:12px;line-height:1.5}
+.ov-close{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;padding:2px 6px;line-height:1}
+.ov-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px var(--edge) 30px}
+.ord{background:var(--white);border:1px solid var(--border);padding:13px;margin-bottom:10px}
+.ord.unsent{border-left:4px solid var(--red)}
+.ord-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.ord-id{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--teal)}
+.ord-when{font-size:11px;color:var(--muted)}
+.ord-name{font-size:15px;font-weight:600;margin-bottom:3px}
+.ord-meta{font-size:12px;color:var(--muted);line-height:1.6}
+.ord-amt{font-family:var(--serif);font-size:17px;font-weight:600;margin-top:5px}
+.ord-status{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 7px;margin-top:7px}
+.st-sent{background:var(--tint);color:var(--teal)}
+.st-unsent{background:var(--warnBg);color:var(--warnTx);border:1px solid var(--warnBd)}
+.ord-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.ord-acts button{padding:10px 6px;border:1px solid var(--border);background:var(--white);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ord-acts button:active{background:var(--tint)}
+.ov-empty{text-align:center;color:var(--muted);font-size:13px;padding:40px 20px;line-height:1.6}
+.theme-btn{background:none;border:none;font-size:17px;cursor:pointer;padding:4px 2px 4px 8px;line-height:1;-webkit-tap-highlight-color:transparent}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;color:var(--ink);-webkit-font-smoothing:antialiased}
-.wrap{max-width:480px;margin:0 auto;padding-bottom:110px;background:#F7F5F2}
+body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21px;color:var(--ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:480px;margin:0 auto;padding-bottom:110px;background:var(--bg)}
 
 /* ── Top bar ── */
 .bar{display:flex;align-items:center;gap:10px;padding:12px var(--edge);background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
@@ -32,8 +124,8 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 /* ── Fields ── */
 .f{margin-bottom:9px}
 .f:last-child{margin-bottom:0}
-.f input::placeholder,.f textarea::placeholder{color:#8A8A8A;opacity:1}
-.f input:focus::placeholder{color:#BDBDBD}
+.f input::placeholder,.f textarea::placeholder{color:var(--ph);opacity:1}
+.f input:focus::placeholder{color:var(--ph2)}
 .f input,.f select,.f textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:0;padding:12px;-webkit-appearance:none;appearance:none;height:46px;outline:none;transition:border-color .15s}
 .f textarea{height:auto;resize:none}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
@@ -59,7 +151,7 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 .td-price{text-align:right;font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
 .td-price.manual-p{color:var(--red);font-size:12px;font-family:var(--sans)}
 .td-del{text-align:right;padding-left:8px}
-.td-del button{background:none;border:none;color:#ccc;font-size:16px;cursor:pointer;padding:2px 4px;line-height:1}
+.td-del button{background:none;border:none;color:var(--xmark);font-size:16px;cursor:pointer;padding:2px 4px;line-height:1}
 .td-del button:active{color:var(--red)}
 
 /* Instructions sub-row */
@@ -70,18 +162,27 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 
 /* 4-col inline inputs */
 .row4{display:grid;grid-template-columns:2.2fr 1fr 0.7fr 1fr;gap:6px;align-items:start}
+/* ── Larger touch-friendly input row ── */
+.big-row{margin-bottom:14px}
+.big-half{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.big-row .fi input,.big-row input,.big-half input{height:56px !important;font-size:17px !important;padding:14px !important}
+.qty-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 6px}
+.qty-wrap{display:flex;align-items:center;border:1px solid var(--border);height:56px;background:var(--white)}
+.qty-b{width:50px;height:100%;border:none;background:transparent;font-size:26px;font-weight:300;color:var(--teal);cursor:pointer;line-height:1;-webkit-tap-highlight-color:rgba(6,74,75,.15);font-family:var(--sans)}
+.qty-b:active{background:var(--tint)}
+.qty-n{flex:1;text-align:center;font-size:19px;font-weight:700;color:var(--ink)}
 .row4 .fi input,.row4 .fi select{height:40px;padding:8px 8px;font-size:13px}
 .row4 .fi select{padding-right:22px;background-size:10px}
 .fi{position:relative}
 .fi input,.fi select{width:100%;font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:0;padding:8px;-webkit-appearance:none;appearance:none;height:40px;outline:none;transition:border-color .15s}
 .fi input:focus,.fi select:focus{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
-.fi input::placeholder{color:#8A8A8A;font-size:12px}
+.fi input::placeholder{color:var(--ph);font-size:12px}
 .fi select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23064A4B' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;padding-right:22px}
 
 /* Suggestions dropdown — fixed position set by JS to escape grid clipping */
 .sug-wrap{position:relative}
 .suggestions{position:fixed;background:var(--white);border:1px solid var(--teal);z-index:9999;max-height:200px;overflow-y:auto;display:none;box-shadow:0 4px 16px rgba(0,0,0,.15);-webkit-overflow-scrolling:touch}
-.sug-item{padding:12px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);cursor:pointer;font-size:13px;-webkit-tap-highlight-color:rgba(6,74,75,0.15);user-select:none;min-height:44px}
+.sug-item{padding:14px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);cursor:pointer;font-size:15px;-webkit-tap-highlight-color:rgba(6,74,75,0.15);user-select:none;min-height:48px}
 .sug-item:last-child{border-bottom:none}
 .sug-item:active{background:var(--tint)}
 .sug-price{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--teal)}
@@ -93,7 +194,8 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 /* action row below inputs */
 .row-actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .btn-instr{background:none;border:none;font-family:var(--sans);font-size:12px;color:var(--teal);cursor:pointer;font-weight:600;padding:0;letter-spacing:.03em;text-decoration:underline;text-underline-offset:2px}
-.btn-addset{background:var(--teal);border:none;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:9px 16px;cursor:pointer}
+.btn-addset{background:var(--teal);border:none;font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;height:56px;padding:0 16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn-addset:active{background:var(--deep)}
 .btn-addset:active{background:var(--deep)}
 
 /* instructions inline input */
@@ -107,11 +209,12 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 .tot-row .v{font-family:var(--serif);font-size:22px;font-weight:600}
 
 /* ── Footer ── */
-.actions{position:fixed;left:0;right:0;bottom:0;z-index:200;background:var(--white);border-top:1px solid var(--border);padding:10px var(--edge) 14px;box-shadow:0 -4px 12px rgba(0,0,0,.06)}
+.actions{position:fixed;left:0;right:0;bottom:0;z-index:200;background:var(--white);border-top:1px solid var(--border);padding:10px var(--edge) 14px;box-shadow:0 -4px 12px var(--shadow)}
 .place{width:100%;padding:16px;background:var(--teal);color:#fff;border:none;font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
 .place:active{background:var(--deep)}
 .reset-link{text-align:center;display:block;margin-top:10px;font-size:11px;color:var(--muted);cursor:pointer;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
 
+.new-tag{display:inline-block;background:var(--warnBg);border:1px solid var(--warnBd);color:var(--warnTx);font-size:9px;font-weight:700;letter-spacing:.06em;padding:1px 5px;margin-left:5px;vertical-align:middle;white-space:nowrap}
 .no-items{font-size:12px;color:var(--muted);text-align:center;padding:6px 0 14px;display:none}
 
 /* ── Payment method buttons ── */
@@ -124,25 +227,55 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 
   <div class="bar">
     <h1>Exhibition Order</h1>
-    <span class="tag">Taasha Craft</span>
+    <button class="orders-btn" id="btnOrders" type="button">Orders<span class="badge zero" id="ordersBadge">0</span></button>
+    <button class="theme-btn" id="btnTheme" type="button" title="Toggle dark mode">🌙</button>
   </div>
 
-  <!-- Exhibition info strip -->
-  <div style="background:var(--teal);color:#fff;padding:8px var(--edge);display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.05em">
-    <span style="font-weight:700">📍 Surat &nbsp;·&nbsp; 15 & 16 Aug</span>
-    <span style="opacity:.8">Dhanraj</span>
+  <!-- Exhibition info strip (shown once setup is saved) -->
+  <div id="exStrip" style="display:none;background:var(--teal);color:#fff;padding:8px var(--edge);justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.05em">
+    <span style="font-weight:700" id="exStripInfo"></span>
+    <span id="btnEditSetup" style="opacity:.85;text-decoration:underline;cursor:pointer;padding:4px 0 4px 12px">Edit</span>
+  </div>
+
+  <!-- Setup card -->
+  <div class="card" id="setupCard" style="display:none">
+    <p class="ttl">Exhibition Setup</p>
+    <div class="f"><input id="exPlace" placeholder="Exhibition location" autocomplete="off"></div>
+    <div class="f"><input id="exDates" placeholder="Dates (e.g. 15 &amp; 16 Aug)" autocomplete="off"></div>
+    <div class="row2">
+      <div class="f"><input id="exUser" placeholder="Your name" autocomplete="off"></div>
+      <div class="f"><input id="exCode" placeholder="Code (e.g. D)" maxlength="4" autocomplete="off" style="text-transform:uppercase"></div>
+    </div>
+    <button id="btnSaveSetup" style="width:100%;margin-top:4px;padding:14px;background:var(--teal);color:#fff;border:none;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Save Setup</button>
+  </div>
+
+  <!-- Draft restored notice -->
+  <div id="draftNote" style="display:none;align-items:center;gap:10px;background:var(--warnBg);border-bottom:1px solid var(--warnBd);color:var(--warnTx);padding:10px var(--edge);font-size:12px">
+    <span style="flex:1;line-height:1.4"></span>
+    <button id="draftDiscard" type="button" style="background:none;border:1px solid var(--warnBd);color:var(--warnTx);font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 9px;cursor:pointer">Discard</button>
   </div>
 
   <!-- CUSTOMER -->
   <div class="card">
-    <p class="ttl">Customer Details</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+      <p class="ttl" style="margin:0;flex:1">Customer Details</p>
+      <button id="btnClearTop" type="button" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;cursor:pointer;-webkit-tap-highlight-color:transparent">Clear Form</button>
+    </div>
     <div class="f"><input id="custName" placeholder="Customer name" autocomplete="off"></div>
-    <div class="f"><input id="phone" type="tel" inputmode="numeric" placeholder="Phone number" autocomplete="off"></div>
+    <div class="f" style="margin-bottom:0">
+      <input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="Phone number (10 digits)" autocomplete="off">
+      <div id="phoneErr" style="display:none;font-size:11.5px;color:var(--red);margin-top:5px"></div>
+    </div>
   </div>
 
   <!-- ADDRESS -->
   <div class="card">
-    <p class="ttl">Delivery Address</p>
+    <div class="addr-head" id="addrToggle">
+      <p class="ttl" style="margin:0;flex:1">Delivery Address</p>
+      <span class="addr-sum" id="addrSum">Optional</span>
+      <span class="chev" id="addrChev">▸</span>
+    </div>
+    <div id="addrBody" style="display:none;margin-top:14px">
     <div class="f"><input id="addr1" placeholder="Line 1 — House / Building / Street" autocomplete="off"></div>
     <div class="f"><input id="addr2" placeholder="Line 2 — Area / Landmark (optional)" autocomplete="off"></div>
     <div class="f sug-wrap">
@@ -197,6 +330,7 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
       </select>
     </div>
     <div class="f"><input id="pincode" inputmode="numeric" placeholder="PIN Code" autocomplete="off"></div>
+    </div>
   </div>
 
   <!-- ORDER DETAILS -->
@@ -229,32 +363,42 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 
     <!-- ── Input row — always visible ── -->
     <div class="input-row" id="inputRow">
-      <div class="row4">
-        <!-- Name search -->
-        <div class="fi sug-wrap">
+      <!-- Design name — full width -->
+      <div class="big-row">
+        <div class="fi sug-wrap" style="margin-bottom:0">
           <input type="text" id="iName" placeholder="Design name" autocomplete="off">
         </div>
-        <!-- Size -->
+        <div id="newDesignFlag" style="display:none;background:var(--warnBg);border:1px solid var(--warnBd);border-top:none;padding:8px 12px;font-size:12px;color:var(--warnTx)">
+          Not in list — enter price manually
+        </div>
+      </div>
+
+      <!-- Size + Price -->
+      <div class="big-half">
         <div class="fi sug-wrap">
           <input type="text" id="iSize" placeholder="Size" autocomplete="off">
         </div>
-        <!-- Qty -->
-        <div class="fi">
-          <input type="number" id="iQty" value="1" min="1" inputmode="numeric" placeholder="Qty">
-        </div>
-        <!-- Price -->
         <div class="fi fi-price">
           <input type="number" id="iPrice" placeholder="Price" inputmode="numeric">
         </div>
       </div>
 
-      <!-- Instructions toggle + Add Set -->
-      <div class="row-actions">
-        <button class="btn-instr" id="btnInstr">+ Add instructions</button>
+      <!-- Qty stepper + Add Set -->
+      <div class="big-half" style="align-items:end">
+        <div>
+          <p class="qty-lbl">Quantity</p>
+          <div class="qty-wrap">
+            <button class="qty-b" id="qtyMinus" type="button">−</button>
+            <div class="qty-n" id="iQtyVal">1</div>
+            <button class="qty-b" id="qtyPlus" type="button">+</button>
+          </div>
+        </div>
         <button class="btn-addset" id="btnAddSet">Add Set</button>
       </div>
-      <div class="instr-input-wrap" id="instrWrap">
-        <input type="text" id="iInstr" placeholder="Instructions for this item…">
+
+
+      <div class="fi" style="margin-top:2px">
+        <input type="text" id="iInstr" placeholder="Instructions (optional)" autocomplete="off" style="height:56px;font-size:17px;padding:14px">
       </div>
     </div>
 
@@ -300,7 +444,7 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
     </div>
 
     <!-- Payment summary -->
-    <div style="background:#F7F5F2;padding:12px;font-size:13px;line-height:2">
+    <div style="background:var(--panel);padding:12px;font-size:13px;line-height:2">
       <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Subtotal</span><span id="ps-sub" style="font-weight:600">₹0</span></div>
       <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)" id="ps-disc-label">Discount (10%)</span><span id="ps-disc" style="font-weight:600;color:var(--red)">-₹0</span></div>
       <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:6px;margin-top:4px"><span style="font-weight:700">Final Total</span><span id="ps-final" style="font-family:var(--serif);font-size:17px;font-weight:600">₹0</span></div>
@@ -313,10 +457,13 @@ body{background:#F7F5F2;font-family:var(--sans);font-size:14px;line-height:21px;
 
 <!-- FOOTER -->
 <div class="actions">
+  <div style="display:grid;grid-template-columns:1fr 2fr;gap:8px">
+  <button class="btn-sum" id="btnSummary" type="button">Summary</button>
   <button class="place" id="btnSend">
     <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Send on WhatsApp
   </button>
+  </div>
   <span class="reset-link" id="btnReset">🔄 New Order</span>
 </div>
 
@@ -796,6 +943,8 @@ const DESIGNS = {
 };
 
 let items = [];
+let curQty = 1;
+let designInList = false;
 let instrVisible = false;
 let payMethod = "Online";
 
@@ -806,12 +955,23 @@ function calcPayment(){
   const discAmt = Math.round(sub * disc / 100);
   const final = sub - discAmt;
 
-  // Auto-fill paid with final total; user can override
   const paidEl = document.getElementById("paidAmt");
-  if(!paidEl.dataset.userEdited) paidEl.value = final || "";
+  let paid;
 
-  const paidInput = Math.max(0, parseInt(paidEl.value)||0);
-  const paid = Math.min(final, paidInput);
+  if(payMethod === "Unpaid"){
+    paid = 0;
+    paidEl.value = "";
+    paidEl.disabled = true;
+    paidEl.placeholder = "0";
+    paidEl.style.opacity = ".5";
+  } else {
+    paidEl.disabled = false;
+    paidEl.style.opacity = "1";
+    // Auto-fill paid with final total; user can override
+    if(!paidEl.dataset.userEdited) paidEl.value = final || "";
+    paid = Math.min(final, Math.max(0, parseInt(paidEl.value)||0));
+  }
+
   const bal = final - paid;
 
   document.getElementById("ps-sub").textContent = "₹"+sub.toLocaleString("en-IN");
@@ -828,6 +988,10 @@ function selectMethod(m){
   ["Online","Cash","Unpaid"].forEach(x=>{
     document.getElementById("pm-"+x).classList.toggle("on", x===m);
   });
+  // switching away from Unpaid restores the auto-filled amount
+  if(m !== "Unpaid") delete document.getElementById("paidAmt").dataset.userEdited;
+  calcPayment();
+  queueDraft();
 }
 
 /* ── Position dropdown below its input using fixed coords ── */
@@ -847,15 +1011,714 @@ window.addEventListener("scroll", function(){
   if(document.getElementById("citySuggestions").style.display === "block") positionBox("city","citySuggestions");
 }, {passive:true});
 
+/* ══ Saved orders (device log) ══ */
+var ORDERS = [];
+var pendingId = null;
+
+function loadOrders(){
+  try{ var r = localStorage.getItem("tc_orders"); if(r) ORDERS = JSON.parse(r); }catch(e){ ORDERS = []; }
+  ORDERS.forEach(function(o){ if(o.synced === undefined) o.synced = false; });
+  updateBadge();
+}
+function persistOrders(){
+  try{ localStorage.setItem("tc_orders", JSON.stringify(ORDERS)); }
+  catch(e){ alert("Could not save the order locally — storage may be full."); }
+}
+function staffCode(){
+  var c = (SETUP.code || "").trim().toUpperCase();
+  if(!c) c = (SETUP.user || "").trim().toUpperCase().replace(/[^A-Z]/g,"").slice(0,3);
+  return c || "TC";
+}
+
+function nextOrderNo(){
+  var n = 0;
+  try{ n = parseInt(localStorage.getItem("tc_counter")||"0"); }catch(e){}
+  n = n + 1;
+  try{ localStorage.setItem("tc_counter", String(n)); }catch(e){}
+  return staffCode() + "-TC-" + String(n).padStart(4,"0");
+}
+function updateBadge(){
+  var unsent = ORDERS.filter(function(o){ return !o.sent; }).length;
+  var b = document.getElementById("ordersBadge");
+  if(!b) return;
+  b.textContent = unsent > 0 ? unsent : ORDERS.length;
+  b.classList.toggle("zero", unsent === 0);
+}
+function fmtWhen(ts){
+  var d = new Date(ts);
+  var hh = d.getHours(), mm = String(d.getMinutes()).padStart(2,"0");
+  var ap = hh >= 12 ? "pm" : "am"; hh = hh % 12 || 12;
+  return d.getDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()] + ", " + hh + ":" + mm + ap;
+}
+
+/* Customer-facing copy — no internal notes, no staff name */
+function buildCustomerMsg(o){
+  var m = "*Taasha Craft*\n";
+  m += "Order No: " + o.id + "\n\n";
+  m += "Thank you for your order.\n\n";
+  m += "*Items*\n";
+  o.items.forEach(function(it,i){
+    m += (i+1) + ". " + it.name + "  |  Size: " + it.size + "  |  Qty: " + it.qty;
+    m += "  |  \u20B9" + (it.price*it.qty).toLocaleString("en-IN") + "\n";
+    if(it.instr) m += "   Note: " + it.instr + "\n";
+  });
+  m += "\nTotal: \u20B9" + o.pay.final.toLocaleString("en-IN");
+  m += "\nPaid: \u20B9" + o.pay.paid.toLocaleString("en-IN");
+  if(o.pay.bal > 0) m += "\n*Balance Due: \u20B9" + o.pay.bal.toLocaleString("en-IN") + "*";
+  if(o.addr) m += "\n\n*Delivery Address*\n" + o.addr;
+  m += "\n\nPlease quote " + o.id + " for any query.";
+  return m;
+}
+
+function openWA(number, text){
+  var a = document.createElement("a");
+  a.href = "https://wa.me/" + (number || "") + "?text=" + encodeURIComponent(text);
+  a.target = "_blank"; a.rel = "noopener";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+function resendOrder(id){
+  var o = ORDERS.filter(function(x){ return x.id===id; })[0];
+  if(!o) return;
+  pendingId = id;
+  openWA("918758881215", o.msg);
+}
+function sendCustomerCopy(id){
+  var o = ORDERS.filter(function(x){ return x.id===id; })[0];
+  if(!o) return;
+  if(!/^[0-9]{10}$/.test(o.phone)){ alert("No valid customer phone on this order."); return; }
+  openWA("91" + o.phone, buildCustomerMsg(o));
+}
+function markSent(id, val){
+  ORDERS.forEach(function(o){ if(o.id===id) o.sent = val; });
+  persistOrders(); updateBadge(); renderOrders();
+}
+
+/* ── Backup / export ── */
+function buildBackupText(){
+  if(!ORDERS.length) return "";
+  var t = "*TAASHA CRAFT — ORDER BACKUP*\n";
+  t += SETUP.place ? SETUP.place + (SETUP.dates ? "  |  " + SETUP.dates : "") + "\n" : "";
+  t += "Staff: " + (SETUP.user || "-") + "\n";
+  t += "Orders: " + ORDERS.length + "\n\n";
+  ORDERS.forEach(function(o){
+    t += o.id + "  " + fmtWhen(o.ts) + (o.sent ? "" : "  [NOT CONFIRMED]") + "\n";
+    t += o.name + "  " + o.phone + "\n";
+    o.items.forEach(function(it){
+      t += "  - " + it.name + " (" + it.size + ") x" + it.qty + "  \u20B9" + (it.price*it.qty).toLocaleString("en-IN") + "\n";
+      if(it.instr) t += "      Note: " + it.instr + "\n";
+    });
+    if(o.notes) t += "  Order note: " + o.notes + "\n";
+    t += "  Total \u20B9" + o.pay.final.toLocaleString("en-IN") +
+         "  |  Paid \u20B9" + o.pay.paid.toLocaleString("en-IN") + " (" + o.pay.method + ")";
+    if(o.pay.bal > 0) t += "  |  DUE \u20B9" + o.pay.bal.toLocaleString("en-IN");
+    t += "\n\n";
+  });
+  return t;
+}
+
+function backupToWhatsApp(){
+  if(!ORDERS.length){ alert("No orders to back up yet."); return; }
+  var t = buildBackupText();
+  if(t.length > 25000){
+    alert("Too many orders for one message.\n\nUse CSV download instead, or back up more often.");
+    return;
+  }
+  openWA("", t);
+}
+
+function csvCell(v){
+  v = (v === undefined || v === null) ? "" : String(v);
+  return '"' + v.replace(/"/g,'""') + '"';
+}
+
+function downloadCsv(){
+  if(!ORDERS.length){ alert("No orders to export yet."); return; }
+  var rows = [["Order No","Date","Staff","Exhibition","Customer","Phone","Address","Design","Size","Qty","Unit Price","Line Total","Order Total","Paid","Balance","Method","Confirmed Sent","Item Note","Order Notes"]];
+  ORDERS.forEach(function(o){
+    var d = new Date(o.ts).toLocaleString("en-IN");
+    o.items.forEach(function(it){
+      rows.push([o.id, d, (o.staff||SETUP.user||""), (o.place||SETUP.place||""), o.name, o.phone, o.addr,
+        it.name, it.size, it.qty, it.price, it.price*it.qty,
+        o.pay.final, o.pay.paid, o.pay.bal, o.pay.method,
+        o.sent ? "Yes" : "No", it.instr || "", o.notes || ""]);
+    });
+  });
+  var csv = "\uFEFF" + rows.map(function(r){ return r.map(csvCell).join(","); }).join("\r\n");
+  var blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "taasha-orders-" + new Date().toISOString().slice(0,10) + ".csv";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+}
+
+/* ══ Google Sheet sync ══
+   Paste the Apps Script Web app URL below. Empty = sync disabled, form works as before. */
+var SYNC_URL = "https://script.google.com/macros/s/AKfycbwnBdctbu6OeE-Q-KCgQ3zC7yLGX86pEOcrW76walWuvZ2Dd2jM87jptmBY5u50XDXM/exec";
+
+var syncing = false;
+
+function pendingSync(){
+  return ORDERS.filter(function(o){ return !o.synced; });
+}
+
+function orderToRows(o){
+  return o.items.map(function(it){
+    return [
+      o.id,
+      new Date(o.ts).toLocaleString("en-IN"),
+      o.staff || "", o.code || "", o.place || "",
+      o.name, o.phone, o.addr || "",
+      it.name, it.size, it.qty, it.price, it.price*it.qty,
+      o.pay.sub, o.pay.disc, o.pay.discAmt, o.pay.final,
+      o.pay.paid, o.pay.bal, o.pay.method,
+      it.instr || "", o.notes || "",
+      o.sent ? "Yes" : "No"
+    ];
+  });
+}
+
+var SHEET_HEADER = ["Order No","Date","Staff","Code","Exhibition","Customer","Phone","Address",
+  "Design","Size","Qty","Unit Price","Line Total","Subtotal","Discount %","Discount Amt",
+  "Order Total","Paid","Balance","Method","Item Note","Order Notes","Sent to Team"];
+
+/* Posts one order. Resolves true only if the row was accepted. */
+function postOrder(o){
+  var payload = JSON.stringify({ id:o.id, header:SHEET_HEADER, rows:orderToRows(o) });
+
+  return fetch(SYNC_URL, {
+    method:"POST",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:payload
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(j){ return j && j.ok === true; })
+  .catch(function(){
+    /* CORS blocked but the request may still have gone out.
+       Retry opaquely: if this resolves, the network is up and Apps Script received it. */
+    return fetch(SYNC_URL, {
+      method:"POST", mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:payload
+    }).then(function(){ return true; }).catch(function(){ return false; });
+  });
+}
+
+/* Never blocks the UI. Safe to call as often as you like. */
+function syncPending(manual){
+  if(!SYNC_URL){ if(manual) alert("Sheet sync is not set up yet."); return; }
+  if(syncing) return;
+  var queue = pendingSync();
+  if(!queue.length){ if(manual) alert("Everything is already synced."); updateSyncUI(); return; }
+
+  syncing = true;
+  updateSyncUI("Syncing…");
+
+  var i = 0, failed = 0;
+  function step(){
+    if(i >= queue.length){
+      syncing = false;
+      persistOrders(); updateBadge(); updateSyncUI(); renderOrders();
+      if(manual){
+        alert(failed ? (failed + " order(s) could not sync. They stay queued.") : "All orders synced.");
+      }
+      return;
+    }
+    var o = queue[i++];
+    postOrder(o).then(function(ok){
+      if(ok) o.synced = true; else failed++;
+      persistOrders();
+      step();
+    });
+  }
+  step();
+}
+
+function updateSyncUI(msg){
+  var el = document.getElementById("syncStatus");
+  if(!el) return;
+  if(!SYNC_URL){ el.style.display = "none"; return; }
+  el.style.display = "flex";
+  var n = pendingSync().length;
+  var txt = el.querySelector("span");
+  if(msg){ txt.textContent = msg; el.className = "sync-bar pend"; return; }
+  if(n === 0){ txt.textContent = "All orders synced to Sheet"; el.className = "sync-bar ok"; }
+  else { txt.textContent = n + " order" + (n>1?"s":"") + " waiting to sync"; el.className = "sync-bar pend"; }
+}
+
+/* ══ Draft sync — abandoned/half-filled orders reach the Sheet too ══ */
+var DRAFT_ID = null;
+var draftPushTimer = null;
+var lastDraftPush = 0;
+
+function getDraftId(){
+  if(DRAFT_ID) return DRAFT_ID;
+  try{ DRAFT_ID = localStorage.getItem("tc_draftid") || null; }catch(e){}
+  if(!DRAFT_ID){
+    DRAFT_ID = staffCode() + "-D-" + Date.now().toString(36).toUpperCase();
+    try{ localStorage.setItem("tc_draftid", DRAFT_ID); }catch(e){}
+  }
+  return DRAFT_ID;
+}
+
+function endDraftId(){
+  DRAFT_ID = null;
+  try{ localStorage.removeItem("tc_draftid"); }catch(e){}
+}
+
+function draftRow(status, orderNo){
+  var d = collectDraft();
+  var itemsTxt = (d.items||[]).map(function(it){
+    return it.name + " (" + it.size + ") x" + it.qty + (it.instr ? " [" + it.instr + "]" : "");
+  }).join("; ");
+  // include the half-typed row that was never added
+  if(d.row && d.row.name) itemsTxt += (itemsTxt ? "; " : "") + "UNADDED: " + d.row.name +
+      (d.row.size ? " (" + d.row.size + ")" : "") + (d.row.price ? " \u20B9" + d.row.price : "");
+
+  var sub = (d.items||[]).reduce(function(a,it){ return a + it.price*it.qty; }, 0);
+  var disc = parseFloat(d.pay.discount)||0;
+  var final = sub - Math.round(sub*disc/100);
+  var paid = (d.pay.method === "Unpaid") ? 0 : Math.min(final, parseInt(d.pay.paid)||0);
+
+  var addr = [d.cust.a1, d.cust.a2, d.cust.city, d.cust.pin].filter(Boolean).join(", ");
+
+  return [
+    getDraftId(),
+    new Date().toLocaleString("en-IN"),
+    status,
+    orderNo || "",
+    SETUP.user || "", staffCode(), SETUP.place || "",
+    d.cust.name || "", d.cust.phone || "", addr,
+    itemsTxt, (d.items||[]).length,
+    sub, final, paid, final - paid, d.pay.method || "",
+    d.notes || ""
+  ];
+}
+
+var DRAFT_HEADER = ["Draft ID","Last Updated","Status","Became Order","Staff","Code","Exhibition",
+  "Customer","Phone","Address","Items","Item Count","Subtotal","Total","Paid","Balance","Method","Notes"];
+
+function pushDraft(status, orderNo, useBeacon){
+  if(!SYNC_URL) return;
+  var d = collectDraft();
+  if(!draftHasContent(d) && status !== "COMPLETED") return;
+
+  var payload = JSON.stringify({
+    type: "draft",
+    id: getDraftId(),
+    header: DRAFT_HEADER,
+    row: draftRow(status, orderNo)
+  });
+
+  if(useBeacon && navigator.sendBeacon){
+    try{
+      navigator.sendBeacon(SYNC_URL, new Blob([payload], {type:"text/plain;charset=utf-8"}));
+      return;
+    }catch(e){}
+  }
+  fetch(SYNC_URL, {
+    method:"POST",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:payload
+  }).catch(function(){
+    return fetch(SYNC_URL, {method:"POST", mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"}, body:payload}).catch(function(){});
+  });
+  lastDraftPush = Date.now();
+}
+
+/* Debounced: pushes 25s after you stop typing, never on every keystroke */
+function queueDraftPush(){
+  if(!SYNC_URL) return;
+  if(draftPushTimer) clearTimeout(draftPushTimer);
+  draftPushTimer = setTimeout(function(){ pushDraft("OPEN"); }, 6000);
+}
+
+/* ── Confirm bar ── */
+function showConfirm(id){
+  document.getElementById("cbTxt").textContent = "Order " + id + " — did it send to the team?";
+  document.getElementById("confirmBar").style.display = "flex";
+}
+function hideConfirm(){ document.getElementById("confirmBar").style.display = "none"; try{ localStorage.removeItem("tc_pending"); }catch(e){} }
+
+/* ── Orders overlay ── */
+function openOrders(){ renderOrders(); updateSyncUI(); syncPending(); document.getElementById("ordersOverlay").style.display = "flex"; }
+function closeOrders(){ document.getElementById("ordersOverlay").style.display = "none"; }
+
+function renderOrders(){
+  var box = document.getElementById("ordersList");
+  if(!ORDERS.length){
+    box.innerHTML = '<div class="ov-empty">No saved orders yet.<br>Every order you send is kept here on this device.</div>';
+    return;
+  }
+  var warn = '<div class="ov-warn">Saved on this phone only. Back up regularly — browser data can be cleared by iOS.</div>';
+  var html = warn + ORDERS.slice().reverse().map(function(o){
+    var itemLines = o.items.map(function(it){
+      var line = esc(it.name) + " (" + esc(it.size) + ") x" + it.qty;
+      if(it.instr) line += ' <span style="color:var(--warnTx)">\u2022 ' + esc(it.instr) + '</span>';
+      return line;
+    }).join("<br>");
+    if(o.notes) itemLines += '<br><span style="color:var(--warnTx)">Note: ' + esc(o.notes) + '</span>';
+    return '<div class="ord' + (o.sent ? '' : ' unsent') + '">' +
+      '<div class="ord-top"><span class="ord-id">' + o.id + '</span><span class="ord-when">' + fmtWhen(o.ts) + '</span></div>' +
+      '<div class="ord-name">' + o.name + '</div>' +
+      '<div class="ord-meta">' + o.phone + '<br>' + itemLines + '</div>' +
+      '<div class="ord-amt">\u20B9' + o.pay.final.toLocaleString("en-IN") +
+        (o.pay.bal > 0 ? ' <span style="font-size:12px;color:var(--red);font-family:var(--sans)">\u2022 \u20B9' + o.pay.bal.toLocaleString("en-IN") + ' due</span>' : '') +
+      '</div>' +
+      '<span class="ord-status ' + (o.sent ? 'st-sent">SENT' : 'st-unsent">NOT CONFIRMED') + '</span>' +
+      (SYNC_URL && !o.synced ? '<span class="ord-status st-unsent" style="margin-left:5px">NOT IN SHEET</span>' : '') +
+      '<div class="ord-acts">' +
+        '<button data-act="summary" data-id="' + o.id + '" style="grid-column:1/-1;background:var(--teal);color:#fff;border-color:var(--teal)">Show summary to customer</button>' +
+        '<button data-act="resend" data-id="' + o.id + '">Resend to team</button>' +
+        '<button data-act="cust" data-id="' + o.id + '">Copy to customer</button>' +
+      '</div></div>';
+  }).join("");
+  box.innerHTML = html;
+}
+
+/* ── Address card collapse ── */
+function toggleAddr(force){
+  var body = document.getElementById("addrBody");
+  var chev = document.getElementById("addrChev");
+  var open = (force === undefined) ? (body.style.display === "none") : force;
+  body.style.display = open ? "block" : "none";
+  chev.classList.toggle("open", open);
+}
+
+function updateAddrSummary(){
+  var g = function(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; };
+  var el = document.getElementById("addrSum");
+  if(!el) return;
+  var bits = [g("addr1"), g("addr2"), g("city"), g("pincode")].filter(Boolean);
+  if(!bits.length){ el.textContent = "Optional"; el.classList.remove("filled"); return; }
+  el.textContent = bits.join(", ");
+  el.classList.add("filled");
+}
+
+function addrHasContent(){
+  return ["addr1","addr2","city","pincode"].some(function(id){
+    var e = document.getElementById(id);
+    return e && e.value.trim();
+  });
+}
+
+/* ══ Draft auto-save — survives reload, crash, tab eviction ══ */
+var draftTimer = null;
+
+function collectDraft(){
+  var g = function(id){ var e = document.getElementById(id); return e ? e.value : ""; };
+  var pe = document.getElementById("paidAmt");
+  return {
+    ts: Date.now(),
+    cust: {
+      name:g("custName"), phone:g("phone"),
+      a1:g("addr1"), a2:g("addr2"), city:g("city"),
+      state:g("state"), country:g("country"), pin:g("pincode")
+    },
+    items: items,
+    pay: {
+      discount: g("discount"),
+      paid: pe ? pe.value : "",
+      paidEdited: !!(pe && pe.dataset.userEdited),
+      method: payMethod
+    },
+    notes: g("notes"),
+    row: { name:g("iName"), size:g("iSize"), price:g("iPrice"), instr:g("iInstr"), qty:curQty }
+  };
+}
+
+function draftHasContent(d){
+  if(!d) return false;
+  if(d.items && d.items.length) return true;
+  if(d.cust && (d.cust.name || d.cust.phone || d.cust.a1)) return true;
+  if(d.row && (d.row.name || d.row.price)) return true;
+  return false;
+}
+
+function saveDraft(){
+  try{
+    var d = collectDraft();
+    if(draftHasContent(d)) localStorage.setItem("tc_draft", JSON.stringify(d));
+    else localStorage.removeItem("tc_draft");
+  }catch(e){}
+}
+
+function queueDraft(){
+  if(draftTimer) clearTimeout(draftTimer);
+  draftTimer = setTimeout(saveDraft, 400);
+  queueDraftPush();
+}
+
+function clearDraft(){
+  try{ localStorage.removeItem("tc_draft"); }catch(e){}
+}
+
+function restoreDraft(){
+  var d = null;
+  try{ var r = localStorage.getItem("tc_draft"); if(r) d = JSON.parse(r); }catch(e){}
+  if(!draftHasContent(d)) return;
+
+  var st = function(id,v){ var e = document.getElementById(id); if(e && v !== undefined && v !== null) e.value = v; };
+  st("custName", d.cust.name); st("phone", d.cust.phone);
+  st("addr1", d.cust.a1); st("addr2", d.cust.a2); st("city", d.cust.city);
+  st("state", d.cust.state || "GJ"); st("country", d.cust.country || "India");
+  st("pincode", d.cust.pin);
+  st("notes", d.notes);
+  st("discount", d.pay.discount || "10");
+
+  items = d.items || [];
+  renderTable();
+
+  var pe = document.getElementById("paidAmt");
+  if(pe && d.pay.paidEdited){ pe.dataset.userEdited = "1"; pe.value = d.pay.paid; }
+  selectMethod(d.pay.method || "Online");
+
+  if(d.row){
+    st("iName", d.row.name); st("iSize", d.row.size);
+    st("iPrice", d.row.price); st("iInstr", d.row.instr);
+    curQty = d.row.qty || 1;
+    var qv = document.getElementById("iQtyVal"); if(qv) qv.textContent = curQty;
+  }
+
+  calcPayment();
+  updateAddrSummary();
+  if(addrHasContent()) toggleAddr(true);
+  showDraftNote(d.ts);
+}
+
+function showDraftNote(ts){
+  var n = document.getElementById("draftNote");
+  if(!n) return;
+  var sp = n.querySelector("span");
+  if(sp) sp.textContent = "Unsent order restored from " + fmtWhen(ts);
+  n.style.display = "flex";
+}
+
+function resetForNext(){
+  endDraftId();
+  clearDraft();
+  items = [];
+  renderTable();
+  ["custName","phone","addr1","addr2","city","pincode","notes"].forEach(function(id){
+    var el = document.getElementById(id); if(el) el.value = "";
+  });
+  document.getElementById("state").value = "GJ";
+  document.getElementById("country").value = "India";
+  document.getElementById("discount").value = "10";
+  var pe = document.getElementById("paidAmt");
+  pe.value = ""; delete pe.dataset.userEdited;
+  selectMethod("Online");
+  clearInputRow();
+  calcPayment();
+  validatePhone();
+  updateAddrSummary();
+  toggleAddr(false);
+  var dn = document.getElementById("draftNote");
+  if(dn) dn.style.display = "none";
+  window.scrollTo(0,0);
+}
+
+function validatePhone(){
+  var el = document.getElementById("phone");
+  var msg = document.getElementById("phoneErr");
+  if(!el || !msg) return true;
+  var v = el.value.trim();
+  if(!v){                       // empty = neutral, not an error yet
+    el.classList.remove("bad");
+    msg.style.display = "none";
+    return false;
+  }
+  var ok = /^[0-9]{10}$/.test(v);
+  el.classList.toggle("bad", !ok);
+  msg.textContent = ok ? "" : "Needs 10 digits — " + v.length + " entered";
+  msg.style.display = ok ? "none" : "block";
+  return ok;
+}
+
+/* ══ Customer summary screen ══ */
+var TEAM_WA = "+91 87588 81215";
+
+function peekOrderNo(){
+  var n = 0;
+  try{ n = parseInt(localStorage.getItem("tc_counter")||"0"); }catch(e){}
+  return staffCode() + "-TC-" + String(n+1).padStart(4,"0");
+}
+
+/* Build a summary object from the live form */
+function currentSummary(){
+  var g = function(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; };
+  var sub = items.reduce(function(a,it){ return a + it.price*it.qty; }, 0);
+  var disc = Math.min(100, Math.max(0, parseFloat(g("discount"))||0));
+  var discAmt = Math.round(sub*disc/100);
+  var final = sub - discAmt;
+  var paid = (payMethod === "Unpaid") ? 0 : Math.min(final, parseInt(g("paidAmt"))||0);
+  var addr = [g("addr1"), g("addr2"), g("city"), g("pincode")].filter(Boolean).join(", ");
+  return {
+    id: peekOrderNo(), ts: Date.now(),
+    name: g("custName"), phone: g("phone"), addr: addr,
+    items: items,
+    pay: {sub:sub, disc:disc, discAmt:discAmt, final:final, paid:paid, bal:final-paid, method:payMethod},
+    notes: g("notes")
+  };
+}
+
+function esc(v){
+  return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderSummary(o){
+  var d = new Date(o.ts);
+  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var hh = d.getHours(), mm = String(d.getMinutes()).padStart(2,"0");
+  var ap = hh>=12 ? "pm" : "am"; hh = hh%12 || 12;
+  var when = d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear()+", "+hh+":"+mm+ap;
+
+  var rows = o.items.map(function(it){
+    var r = '<tr><td>'+esc(it.name)+'</td><td class="c">'+esc(it.size)+'</td>'+
+            '<td class="c">'+it.qty+'</td><td class="r">\u20B9'+(it.price*it.qty).toLocaleString("en-IN")+'</td></tr>';
+    if(it.instr) r += '<tr><td colspan="4" class="sum-note">'+esc(it.instr)+'</td></tr>';
+    return r;
+  }).join("");
+
+  var h = '';
+  h += '<div class="sum-brand">Taasha Craft</div>';
+  h += '<div class="sum-sub">Order Summary</div>';
+  h += '<div class="sum-rule"></div>';
+
+  h += '<div class="sum-kv"><span class="k">Order No</span><span class="v">'+esc(o.id)+'</span></div>';
+  h += '<div class="sum-kv"><span class="k">Date</span><span class="v">'+when+'</span></div>';
+  h += '<div class="sum-kv"><span class="k">Name</span><span class="v">'+esc(o.name||"-")+'</span></div>';
+  h += '<div class="sum-kv"><span class="k">Phone</span><span class="v">'+esc(o.phone||"-")+'</span></div>';
+
+  h += '<div class="sum-h">Items</div>';
+  h += '<table class="sum-tbl"><thead><tr><th>Design</th><th class="c">Size</th><th class="c">Qty</th><th class="r">Amount</th></tr></thead><tbody>'+rows+'</tbody></table>';
+
+  h += '<div style="margin-top:12px">';
+  h += '<div class="sum-tot"><span>Subtotal</span><span>\u20B9'+o.pay.sub.toLocaleString("en-IN")+'</span></div>';
+  if(o.pay.disc > 0)
+    h += '<div class="sum-tot"><span>Discount ('+o.pay.disc+'%)</span><span>-\u20B9'+o.pay.discAmt.toLocaleString("en-IN")+'</span></div>';
+  h += '<div class="sum-tot big"><span>Total</span><span>\u20B9'+o.pay.final.toLocaleString("en-IN")+'</span></div>';
+  h += '<div class="sum-tot"><span>Paid ('+esc(o.pay.method)+')</span><span>\u20B9'+o.pay.paid.toLocaleString("en-IN")+'</span></div>';
+  h += '</div>';
+
+  h += o.pay.bal > 0
+     ? '<div class="sum-due">Balance Due \u20B9'+o.pay.bal.toLocaleString("en-IN")+'</div>'
+     : '<div class="sum-paidfull">Fully Paid</div>';
+
+  if(o.addr){
+    h += '<div class="sum-h">Delivery Address</div>';
+    h += '<div style="font-size:13px;line-height:1.6">'+esc(o.addr)+'</div>';
+  }
+
+  h += '<div class="sum-foot">';
+  h += '<div class="sum-walbl">Taasha Craft WhatsApp</div>';
+  h += '<div class="sum-wa">'+TEAM_WA+'</div>';
+  h += '</div>';
+
+  h += '<div class="sum-warn">If you do not receive a confirmation message from us within <b>2 days</b>, please WhatsApp us on the number above and quote your order number.</div>';
+
+  document.getElementById("sumCard").innerHTML = h;
+  document.getElementById("sumOverlay").style.display = "flex";
+}
+
+function openSummaryCurrent(){
+  if(!items.length){ alert("Add at least one item first."); return; }
+  renderSummary(currentSummary());
+}
+
+function openSummarySaved(id){
+  var o = ORDERS.filter(function(x){ return x.id===id; })[0];
+  if(o) renderSummary(o);
+}
+
+function closeSummary(){ document.getElementById("sumOverlay").style.display = "none"; }
+
+/* ── Theme ── */
+function applyTheme(dark){
+  document.body.classList.toggle("dark", dark);
+  var b = document.getElementById("btnTheme");
+  if(b) b.textContent = dark ? "☀️" : "🌙";
+  try{ localStorage.setItem("tc_theme", dark ? "dark" : "light"); }catch(e){}
+}
+
+function initTheme(){
+  var saved = null;
+  try{ saved = localStorage.getItem("tc_theme"); }catch(e){}
+  var dark = saved
+    ? saved === "dark"
+    : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  applyTheme(dark);
+}
+
+function toggleTheme(){
+  applyTheme(!document.body.classList.contains("dark"));
+}
+
+/* ── Exhibition setup (saved on device) ── */
+var SETUP = {place:"", dates:"", user:""};
+
+function loadSetup(){
+  try{
+    var raw = localStorage.getItem("tc_setup");
+    if(raw) SETUP = JSON.parse(raw);
+  }catch(e){}
+  if(SETUP.place && SETUP.user) showStrip(); else showSetupCard();
+}
+
+function showStrip(){
+  document.getElementById("setupCard").style.display = "none";
+  var strip = document.getElementById("exStrip");
+  var bits = SETUP.place;
+  if(SETUP.dates) bits += "  \u00b7  " + SETUP.dates;
+  document.getElementById("exStripInfo").textContent = bits;
+  document.getElementById("btnEditSetup").textContent = SETUP.user + " (" + staffCode() + ")  \u270e";
+  strip.style.display = "flex";
+}
+
+function showSetupCard(){
+  document.getElementById("exStrip").style.display = "none";
+  document.getElementById("setupCard").style.display = "block";
+  document.getElementById("exPlace").value = SETUP.place || "";
+  document.getElementById("exDates").value = SETUP.dates || "";
+  document.getElementById("exUser").value  = SETUP.user  || "";
+  document.getElementById("exCode").value  = SETUP.code  || "";
+}
+
+function saveSetup(){
+  var p = document.getElementById("exPlace").value.trim();
+  var d = document.getElementById("exDates").value.trim();
+  var u = document.getElementById("exUser").value.trim();
+  var c = document.getElementById("exCode").value.trim().toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(!p){ alert("Enter exhibition location"); return; }
+  if(!u){ alert("Enter your name"); return; }
+  if(!c){ alert("Enter a staff code (e.g. D or DHA)"); document.getElementById("exCode").focus(); return; }
+  SETUP = {place:p, dates:d, user:u, code:c};
+  try{ localStorage.setItem("tc_setup", JSON.stringify(SETUP)); }catch(e){}
+  showStrip();
+}
+
+/* ── "Not in list" flag ── */
+function showNewFlag(on){
+  const el = document.getElementById("newDesignFlag");
+  if(el) el.style.display = on ? "block" : "none";
+}
+
 /* ── Search ── */
 function onSearch(){
   const q = document.getElementById("iName").value.trim();
   const box = document.getElementById("suggestions");
   const priceEl = document.getElementById("iPrice");
 
-  if(!q){ box.style.display="none"; return; }
+  if(!q){ box.style.display="none"; designInList=false; showNewFlag(false); return; }
 
   const matches = Object.entries(DESIGNS).filter(([n])=>n.toLowerCase().includes(q.toLowerCase()));
+
+  // exact match (case-insensitive) means it IS in the catalogue
+  designInList = Object.keys(DESIGNS).some(n=>n.toLowerCase()===q.toLowerCase());
+  showNewFlag(!designInList);
 
   if(!matches.length){
     box.style.display="none";
@@ -874,7 +1737,7 @@ function onSearch(){
 }
 
 /* ── Size search ── */
-const SIZES = ["1.08","1.10","1.12","1.14","2.0","2.2","2.4","2.6","2.8","2.10","2.12"];
+const SIZES = ["2.2","2.4","2.6","2.8","2.10","2.12","1.08","1.10","1.12","1.14","2.0"];
 
 function showAllSizes(){
   renderSizes(SIZES);
@@ -925,47 +1788,50 @@ function pickCity(city){
 }
 
 function pickDesign(name, price){
+  designInList = true;
+  showNewFlag(false);
   document.getElementById("iName").value = name;
   document.getElementById("iPrice").value = price;
   document.getElementById("iPrice").classList.remove("manual-mode");
   document.getElementById("suggestions").style.display = "none";
 }
 
-/* ── Instructions toggle ── */
-function toggleInstr(){
-  instrVisible = !instrVisible;
-  const wrap = document.getElementById("instrWrap");
-  wrap.style.display = instrVisible ? "block" : "none";
-  if(instrVisible) document.getElementById("iInstr").focus();
-}
-
 /* ── Add Set ── */
 function addSet(){
   const name  = document.getElementById("iName").value.trim();
   const size  = document.getElementById("iSize").value.trim();
-  const qty   = parseInt(document.getElementById("iQty").value) || 1;
+  const qty   = curQty;
   const price = parseInt(document.getElementById("iPrice").value);
   const instr = document.getElementById("iInstr").value.trim();
 
   if(!name){ alert("Enter design name"); document.getElementById("iName").focus(); return; }
   if(!size){ alert("Select a size"); document.getElementById("iSize").focus(); return; }
+  if(SIZES.indexOf(size) === -1){
+    alert("Invalid size.\n\nAllowed sizes:\n" + SIZES.join(", "));
+    document.getElementById("iSize").focus();
+    return;
+  }
   if(!price || isNaN(price)){ alert("Enter price"); document.getElementById("iPrice").focus(); return; }
 
-  items.push({ name, size, qty, price, instr });
+  const isNew = !Object.keys(DESIGNS).some(n=>n.toLowerCase()===name.toLowerCase());
+  items.push({ name, size, qty, price, instr, isNew });
   renderTable();
+  saveDraft();
+  pushDraft("OPEN");   // first item is worth capturing at once
   clearInputRow();
 }
 
 function clearInputRow(){
   document.getElementById("iName").value = "";
   document.getElementById("iSize").value = "";
-  document.getElementById("iQty").value = "1";
+  curQty = 1;
+  document.getElementById("iQtyVal").textContent = "1";
   document.getElementById("iPrice").value = "";
   document.getElementById("iPrice").classList.remove("manual-mode");
   document.getElementById("iInstr").value = "";
-  document.getElementById("instrWrap").style.display = "none";
-  instrVisible = false;
   document.getElementById("suggestions").style.display = "none";
+  designInList = false;
+  showNewFlag(false);
   document.getElementById("iName").focus();
 }
 
@@ -987,7 +1853,7 @@ function renderTable(){
     const lineTotal = it.price * it.qty;
     const mainRow = `
       <tr>
-        <td class="td-name">${it.name}</td>
+        <td class="td-name">${it.name}${it.isNew ? '<span class="new-tag">NOT IN LIST</span>' : ''}</td>
         <td class="td-size">${it.size}</td>
         <td class="td-qty">${it.qty}</td>
         <td class="td-price">₹${lineTotal.toLocaleString('en-IN')}</td>
@@ -1009,6 +1875,8 @@ function renderTable(){
 function removeItem(i){
   items.splice(i,1);
   renderTable();
+  saveDraft();
+  pushDraft("OPEN");
 }
 
 /* ── WhatsApp ── */
@@ -1025,18 +1893,31 @@ function sendWhatsApp(){
   const disc  = Math.min(100, Math.max(0, parseFloat(document.getElementById("discount").value)||0));
   const paid  = Math.max(0, parseInt(document.getElementById("paidAmt").value)||0);
 
-  if(!fn || !phone){ alert("Please fill Customer Name and Phone"); return; }
+  if(!SETUP.place || !SETUP.user){ alert("Complete the exhibition setup first"); showSetupCard(); return; }
+  if(!fn){ alert("Please enter Customer Name"); document.getElementById("custName").focus(); return; }
+  if(!validatePhone()){
+    alert("Phone number must be exactly 10 digits");
+    document.getElementById("phone").focus();
+    return;
+  }
   if(!items.length){ alert("Please add at least one item"); return; }
 
   const fullName = fn;
   const sub = items.reduce((s,it)=>s+it.price*it.qty,0);
   const discAmt = Math.round(sub * disc / 100);
   const final = sub - discAmt;
-  const bal = final - Math.min(final, paid);
+  const paidNow = (payMethod === "Unpaid") ? 0 : Math.min(final, paid);
+  const bal = final - paidNow;
 
-  let msg = `*NEW ORDER — Taasha Craft*\n\n`;
-  msg += `Exhibition: Surat  |  15 & 16 Aug\n`;
-  msg += `Order by: Dhanraj\n\n`;
+  const orderId = nextOrderNo();
+  let msg = `*NEW ORDER — Taasha Craft*\n`;
+  msg += `Order No: ${orderId}\n`;
+  if(bal > 0){
+    msg += `\n🚨🚨 *PAYMENT PENDING — ₹${bal.toLocaleString("en-IN")} DUE* 🚨🚨\n`;
+  }
+  msg += `\n`;
+  msg += `Exhibition: ${SETUP.place}${SETUP.dates ? '  |  ' + SETUP.dates : ''}\n`;
+  msg += `Order by: ${SETUP.user}\n\n`;
   msg += `*Customer*\n`;
   msg += `Name: ${fullName}\n`;
   msg += `Phone: ${phone}\n\n`;
@@ -1049,7 +1930,7 @@ function sendWhatsApp(){
   msg += `\n\n`;
   msg += `*Items*\n`;
   items.forEach((it,i)=>{
-    msg += `${i+1}. ${it.name}  |  Size: ${it.size}  |  Qty: ${it.qty}  |  ₹${it.price.toLocaleString('en-IN')}`;
+    msg += `${i+1}. ${it.name}${it.isNew ? ' (NOT IN LIST - please verify)' : ''}  |  Size: ${it.size}  |  Qty: ${it.qty}  |  ₹${it.price.toLocaleString('en-IN')}`;
     if(it.qty > 1) msg += ` x ${it.qty} = ₹${(it.price*it.qty).toLocaleString('en-IN')}`;
     msg += `\n`;
     if(it.instr) msg += `   Note: ${it.instr}\n`;
@@ -1057,29 +1938,51 @@ function sendWhatsApp(){
   msg += `\nSubtotal: ₹${sub.toLocaleString("en-IN")}`;
   if(disc > 0) msg += `\nDiscount (${disc}%): -₹${discAmt.toLocaleString("en-IN")}`;
   msg += `\n*Total: ₹${final.toLocaleString("en-IN")}*\n`;
-  msg += `\nPaid: ₹${Math.min(final,paid).toLocaleString("en-IN")} (${payMethod})`;
-  msg += `\nBalance Due: ₹${bal.toLocaleString("en-IN")}`;
+  msg += `\nPaid: ₹${paidNow.toLocaleString("en-IN")} (${payMethod})`;
+  msg += bal > 0
+    ? `\n🚨 *BALANCE DUE: ₹${bal.toLocaleString("en-IN")}* 🚨`
+    : `\nBalance Due: ₹0 — ✅ FULLY PAID`;
   if(notes) msg += `\n\nNotes: ${notes}`;
 
-  const numbers = ["918758881215"];
-  const encoded = encodeURIComponent(msg);
-
-  numbers.forEach((num, i) => {
-    setTimeout(() => {
-      const a = document.createElement("a");
-      a.href = `https://wa.me/${num}?text=${encoded}`;
-      a.target = "_blank";
-      a.rel = "noopener";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }, i * 1500); // 1.5s gap so both open
+  // Save locally BEFORE opening WhatsApp, so nothing is lost if the send fails
+  const addrStr = [a1, a2, city, state, country].filter(Boolean).join(", ") + (pin ? " - " + pin : "");
+  ORDERS.push({
+    id: orderId,
+    ts: Date.now(),
+    name: fullName,
+    phone: phone,
+    addr: addrStr,
+    items: items.map(function(it){ return {name:it.name, size:it.size, qty:it.qty, price:it.price, instr:it.instr}; }),
+    pay: {sub:sub, disc:disc, discAmt:discAmt, final:final, paid:paidNow, bal:bal, method:payMethod},
+    notes: notes,
+    staff: SETUP.user,
+    code: staffCode(),
+    place: SETUP.place,
+    msg: msg,
+    sent: false,
+    synced: false
   });
+  persistOrders();
+  updateBadge();
+  pushDraft("COMPLETED", orderId);
+  endDraftId();
+  clearDraft();
+  pendingId = orderId;
+  try{ localStorage.setItem("tc_pending", orderId); }catch(e){}
+
+  setTimeout(function(){ syncPending(); }, 100);  // background, never blocks the send
+
+  openWA("918758881215", msg);
 }
 
 /* ── Reset ── */
 function resetAll(){
-  if(!confirm("Start a new order?")) return;
+  if(!confirm("Clear this form and start a new order?\n\nAnything not yet sent will be lost.")) return;
+  pushDraft("DISCARDED");
+  endDraftId();
+  clearDraft();
+  var dn = document.getElementById("draftNote");
+  if(dn) dn.style.display = "none";
   items = [];
   renderTable();
   ["custName","phone","addr1","addr2","city","pincode","notes"].forEach(id=>{
@@ -1094,6 +1997,9 @@ function resetAll(){
   selectMethod("Online");
   calcPayment();
   clearInputRow();
+  updateAddrSummary();
+  toggleAddr(false);
+  window.scrollTo(0,0);
 }
 
 /* ── Close suggestions on outside tap ── */
@@ -1148,11 +2054,119 @@ document.addEventListener("DOMContentLoaded", function(){
   cityEl.addEventListener("keyup", onCitySearch);
   cityEl.addEventListener("focus", function(){ setTimeout(onCitySearch, 250); });
 
+  // Qty stepper
+  document.getElementById("qtyMinus").addEventListener("click", function(){
+    curQty = Math.max(1, curQty - 1);
+    document.getElementById("iQtyVal").textContent = curQty;
+  });
+  document.getElementById("qtyPlus").addEventListener("click", function(){
+    curQty = curQty + 1;
+    document.getElementById("iQtyVal").textContent = curQty;
+  });
+
+  // Phone — digits only, max 10
+  document.getElementById("phone").addEventListener("input", function(){
+    var v = this.value.replace(/[^0-9]/g, "");
+    if(v.length > 10) v = v.slice(0,10);
+    if(v !== this.value) this.value = v;
+    validatePhone();
+    if(v.length === 10) pushDraft("OPEN");   // enough to trace the customer
+  });
+
+  // Address collapse
+  document.getElementById("addrToggle").addEventListener("click", function(){ toggleAddr(); });
+  ["addr1","addr2","city","pincode","state","country"].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.addEventListener("input", updateAddrSummary); el.addEventListener("change", updateAddrSummary); }
+  });
+  updateAddrSummary();
+
+  // Draft auto-save on every change
+  ["custName","phone","addr1","addr2","city","pincode","notes","state","country","discount","paidAmt","iName","iSize","iPrice","iInstr"].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener("input", queueDraft);
+    el.addEventListener("change", queueDraft);
+  });
+  document.getElementById("draftDiscard").addEventListener("click", function(){
+    if(!confirm("Discard this restored order?")) return;
+    pushDraft("DISCARDED");
+    endDraftId();
+    clearDraft();
+    document.getElementById("draftNote").style.display = "none";
+    resetForNext();
+  });
+  window.addEventListener("pagehide", function(){ saveDraft(); pushDraft("OPEN", null, true); });
+  document.addEventListener("visibilitychange", function(){ if(document.hidden){ saveDraft(); pushDraft("OPEN", null, true); } });
+
+  document.getElementById("btnSummary").addEventListener("click", openSummaryCurrent);
+  document.getElementById("sumClose").addEventListener("click", closeSummary);
+  document.getElementById("phone").addEventListener("blur", validatePhone);
+
+  // Saved orders
+  loadOrders();
+  setTimeout(function(){ syncPending(); }, 1200);
+  document.getElementById("btnOrders").addEventListener("click", openOrders);
+  document.getElementById("ovClose").addEventListener("click", closeOrders);
+  document.getElementById("btnBackup").addEventListener("click", backupToWhatsApp);
+  document.getElementById("btnCsv").addEventListener("click", downloadCsv);
+  document.getElementById("btnSyncNow").addEventListener("click", function(){ syncPending(true); });
+  window.addEventListener("online", function(){ syncPending(); });
+  document.getElementById("ordersList").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-act]");
+    if(!b) return;
+    if(b.dataset.act === "summary") openSummarySaved(b.dataset.id);
+    else if(b.dataset.act === "resend") resendOrder(b.dataset.id);
+    else if(b.dataset.act === "cust") sendCustomerCopy(b.dataset.id);
+  });
+
+  // Confirm bar
+  document.getElementById("cbYes").addEventListener("click", function(){
+    if(pendingId){ markSent(pendingId, true); }
+    hideConfirm();
+    var keep = pendingId; pendingId = null;
+    if(keep && confirm("Order saved and marked sent.\n\nStart a new order?")) resetForNext();
+  });
+  document.getElementById("cbNo").addEventListener("click", function(){
+    if(pendingId) markSent(pendingId, false);
+    hideConfirm(); pendingId = null;
+  });
+
+  // Ask for confirmation when the user returns from WhatsApp
+  document.addEventListener("visibilitychange", function(){
+    if(!document.hidden && pendingId) showConfirm(pendingId);
+  });
+
+  // Restore anything left unfinished
+  restoreDraft();
+  try{
+    var pend = localStorage.getItem("tc_pending");
+    if(pend){ pendingId = pend; showConfirm(pend); }
+  }catch(e){}
+
+  // Theme
+  document.getElementById("btnTheme").addEventListener("click", toggleTheme);
+  initTheme();
+
+  // Setup
+  var codeEl = document.getElementById("exCode");
+  codeEl.addEventListener("input", function(){
+    this.dataset.touched = "1";
+    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g,"");
+  });
+  document.getElementById("exUser").addEventListener("input", function(){
+    if(codeEl.dataset.touched) return;
+    codeEl.value = this.value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,3);
+  });
+  document.getElementById("btnSaveSetup").addEventListener("click", saveSetup);
+  document.getElementById("btnEditSetup").addEventListener("click", showSetupCard);
+  loadSetup();
+
   // Buttons
-  document.getElementById("btnInstr").addEventListener("click", toggleInstr);
   document.getElementById("btnAddSet").addEventListener("click", addSet);
   document.getElementById("btnSend").addEventListener("click", sendWhatsApp);
   document.getElementById("btnReset").addEventListener("click", resetAll);
+  document.getElementById("btnClearTop").addEventListener("click", resetAll);
 
   // Payment method buttons
   ["Online","Cash","Unpaid"].forEach(function(m){
@@ -1176,6 +2190,39 @@ document.addEventListener("DOMContentLoaded", function(){
   calcPayment();
 });
 </script>
+  <!-- Send confirmation bar -->
+  <div class="confirm-bar" id="confirmBar">
+    <span class="cb-txt" id="cbTxt">Did the order send?</span>
+    <button class="cb-yes" id="cbYes" type="button">Sent</button>
+    <button class="cb-no" id="cbNo" type="button">Not yet</button>
+  </div>
+
+  <!-- Customer summary (screenshot-friendly) -->
+  <div class="sum-ov" id="sumOverlay">
+    <div class="sum-top">
+      <span>Show this to the customer</span>
+      <button class="sum-close" id="sumClose" type="button">✕</button>
+    </div>
+    <div class="sum-scroll">
+      <div class="sum-card" id="sumCard"></div>
+    </div>
+  </div>
+
+  <!-- Saved orders -->
+  <div class="ov" id="ordersOverlay">
+    <div class="ov-head">
+      <h2>Saved Orders</h2>
+      <button class="ov-exp" id="btnBackup" type="button" title="Backup to WhatsApp">Backup</button>
+      <button class="ov-exp" id="btnCsv" type="button" title="Download CSV">CSV</button>
+      <button class="ov-close" id="ovClose" type="button">✕</button>
+    </div>
+    <div class="sync-bar" id="syncStatus" style="display:none">
+      <span></span>
+      <button id="btnSyncNow" type="button">Sync now</button>
+    </div>
+    <div class="ov-body" id="ordersList"></div>
+  </div>
+
   <!-- Suggestion dropdowns — outside all layout to avoid iOS clipping -->
   <div class="suggestions" id="suggestions"></div>
   <div class="suggestions" id="sizeSuggestions"></div>
