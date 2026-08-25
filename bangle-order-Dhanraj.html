@@ -1184,6 +1184,17 @@ var SHEET_HEADER = ["Order No","Date","Staff","Code","Exhibition","Customer","Ph
   "Design","Size","Qty","Unit Price","Line Total","Subtotal","Discount %","Discount Amt",
   "Order Total","Paid","Balance","Method","Item Note","Order Notes","Sent to Team"];
 
+/* Fire-and-forget post that survives the browser switching apps. */
+function beaconPost(payload){
+  if(!SYNC_URL) return false;
+  if(navigator.sendBeacon){
+    try{
+      return navigator.sendBeacon(SYNC_URL, new Blob([payload], {type:"text/plain;charset=utf-8"}));
+    }catch(e){}
+  }
+  return false;
+}
+
 /* Posts one order. Resolves true only if the row was accepted. */
 function postOrder(o){
   var payload = JSON.stringify({ id:o.id, header:SHEET_HEADER, rows:orderToRows(o) });
@@ -1946,7 +1957,7 @@ function sendWhatsApp(){
 
   // Save locally BEFORE opening WhatsApp, so nothing is lost if the send fails
   const addrStr = [a1, a2, city, state, country].filter(Boolean).join(", ") + (pin ? " - " + pin : "");
-  ORDERS.push({
+  var newOrder = {
     id: orderId,
     ts: Date.now(),
     name: fullName,
@@ -1961,16 +1972,21 @@ function sendWhatsApp(){
     msg: msg,
     sent: false,
     synced: false
-  });
+  };
+  ORDERS.push(newOrder);
   persistOrders();
   updateBadge();
-  pushDraft("COMPLETED", orderId);
+
+  // Beacon BOTH before navigating away — a normal fetch is killed when WhatsApp opens.
+  if(SYNC_URL){
+    beaconPost(JSON.stringify({ id:orderId, header:SHEET_HEADER, rows:orderToRows(newOrder) }));
+  }
+  pushDraft("COMPLETED", orderId, true);
+
   endDraftId();
   clearDraft();
   pendingId = orderId;
   try{ localStorage.setItem("tc_pending", orderId); }catch(e){}
-
-  setTimeout(function(){ syncPending(); }, 100);  // background, never blocks the send
 
   openWA("918758881215", msg);
 }
@@ -2134,7 +2150,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // Ask for confirmation when the user returns from WhatsApp
   document.addEventListener("visibilitychange", function(){
-    if(!document.hidden && pendingId) showConfirm(pendingId);
+    if(!document.hidden){
+      if(pendingId) showConfirm(pendingId);
+      syncPending();          // catch anything the beacon didn't deliver
+    }
   });
 
   // Restore anything left unfinished
