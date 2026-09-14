@@ -287,6 +287,7 @@ body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21p
     <div class="f"><input id="addr2" placeholder="Line 2 — Area / Landmark (optional)" autocomplete="off"></div>
     <div class="f sug-wrap">
       <input type="text" id="city" placeholder="City" autocomplete="off">
+      <div class="suggestions" id="citySuggestions"></div>
     </div>
     <div class="f">
       <select id="state">
@@ -374,6 +375,7 @@ body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21p
       <div class="big-row">
         <div class="fi sug-wrap" style="margin-bottom:0">
           <input type="text" id="iName" placeholder="Design name" autocomplete="off">
+          <div class="suggestions" id="suggestions"></div>
         </div>
         <div id="newDesignFlag" style="display:none;background:var(--warnBg);border:1px solid var(--warnBd);border-top:none;padding:8px 12px;font-size:12px;color:var(--warnTx)">
           Not in list — enter price manually
@@ -384,6 +386,7 @@ body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21p
       <div class="big-half">
         <div class="fi sug-wrap">
           <input type="text" id="iSize" placeholder="Size" autocomplete="off">
+          <div class="suggestions" id="sizeSuggestions"></div>
         </div>
         <div class="fi fi-price">
           <input type="number" id="iPrice" placeholder="Price" inputmode="numeric">
@@ -2199,9 +2202,5 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="ov-body" id="ordersList"></div>
   </div>
 
-  <!-- Suggestion dropdowns — outside all layout to avoid iOS clipping -->
-  <div class="suggestions" id="suggestions"></div>
-  <div class="suggestions" id="sizeSuggestions"></div>
-  <div class="suggestions" id="citySuggestions"></div>
 </body>
 </html>
