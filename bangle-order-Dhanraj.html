@@ -971,12 +971,31 @@ function selectMethod(m){
 
 /* ── Position dropdown below its input using fixed coords ── */
 function positionBox(inputId, boxId){
-  const input = document.getElementById(inputId);
-  const box = document.getElementById(boxId);
-  const r = input.getBoundingClientRect();
+  var input = document.getElementById(inputId);
+  var box = document.getElementById(boxId);
+  if(!input || !box) return;
+  var r = input.getBoundingClientRect();
+  var vh = window.innerHeight;
+  var boxH = Math.min(200, box.scrollHeight || 200);
+  // Always prefer below; only go above if there genuinely is no room below
+  // and more room above — in practice the keyboard makes "above" useless,
+  // so we clamp to below and let the dropdown scroll internally instead.
+  var top = r.bottom;
+  // ensure it doesn't start below the visible area
+  if(top + 80 > vh) top = Math.max(r.top - boxH, r.bottom);
   box.style.left = r.left + "px";
-  box.style.top = r.bottom + "px";
+  box.style.top  = top + "px";
   box.style.width = Math.max(r.width, 180) + "px";
+  box.style.maxHeight = Math.max(vh - top - 10, 80) + "px";
+}
+
+/* Reposition when keyboard resizes the viewport */
+if(window.visualViewport){
+  window.visualViewport.addEventListener("resize", function(){
+    if(document.getElementById("suggestions").style.display === "block") positionBox("iName","suggestions");
+    if(document.getElementById("sizeSuggestions").style.display === "block") positionBox("iSize","sizeSuggestions");
+    if(document.getElementById("citySuggestions").style.display === "block") positionBox("city","citySuggestions");
+  });
 }
 
 /* Reposition open dropdowns on scroll */
@@ -984,6 +1003,11 @@ window.addEventListener("scroll", function(){
   if(document.getElementById("suggestions").style.display === "block") positionBox("iName","suggestions");
   if(document.getElementById("sizeSuggestions").style.display === "block") positionBox("iSize","sizeSuggestions");
   if(document.getElementById("citySuggestions").style.display === "block") positionBox("city","citySuggestions");
+}, {passive:true});
+
+/* Also reposition on every touch-scroll (iOS sends scroll late) */
+document.addEventListener("touchmove", function(){
+  if(document.getElementById("suggestions").style.display === "block") positionBox("iName","suggestions");
 }, {passive:true});
 
 /* ══ Saved orders (device log) ══ */
