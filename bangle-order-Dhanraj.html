@@ -119,7 +119,7 @@ body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21p
 .bar .tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:700}
 
 /* ── Cards ── */
-.card{background:var(--white);padding:16px;margin:12px var(--edge) 0}
+.card{background:var(--white);padding:16px;margin:12px var(--edge) 0;overflow:visible}
 .ttl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 14px}
 
 /* ── Fields ── */
@@ -164,8 +164,8 @@ body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21p
 /* 4-col inline inputs */
 .row4{display:grid;grid-template-columns:2.2fr 1fr 0.7fr 1fr;gap:6px;align-items:start}
 /* ── Larger touch-friendly input row ── */
-.big-row{margin-bottom:14px}
-.big-half{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.big-row{margin-bottom:14px;position:relative}
+.big-half{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;position:relative}
 .big-row .fi input,.big-row input,.big-half input{height:56px !important;font-size:17px !important;padding:14px !important}
 .qty-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 6px}
 .qty-wrap{display:flex;align-items:center;border:1px solid var(--border);height:56px;background:var(--white)}
@@ -181,8 +181,8 @@ body{background:var(--bg);font-family:var(--sans);font-size:14px;line-height:21p
 .fi select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23064A4B' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;padding-right:22px}
 
 /* Suggestions dropdown — fixed position set by JS to escape grid clipping */
-.sug-wrap{position:relative}
-.suggestions{position:fixed;background:var(--white);border:1px solid var(--teal);z-index:9999;max-height:200px;overflow-y:auto;display:none;box-shadow:0 4px 16px rgba(0,0,0,.15);-webkit-overflow-scrolling:touch}
+.sug-wrap{position:relative;z-index:auto}
+.suggestions{position:absolute;left:0;right:0;top:100%;background:var(--white);border:1px solid var(--teal);border-top:none;z-index:9999;max-height:180px;overflow-y:auto;display:none;box-shadow:0 4px 12px rgba(0,0,0,.12);-webkit-overflow-scrolling:touch}
 .sug-item{padding:14px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);cursor:pointer;font-size:15px;-webkit-tap-highlight-color:rgba(6,74,75,0.15);user-select:none;min-height:48px}
 .sug-item:last-child{border-bottom:none}
 .sug-item:active{background:var(--tint)}
@@ -970,59 +970,7 @@ function selectMethod(m){
 }
 
 /* ── Position dropdown below its input using fixed coords ── */
-function positionBox(inputId, boxId){
-  var input = document.getElementById(inputId);
-  var box = document.getElementById(boxId);
-  if(!input || !box) return;
-  var r = input.getBoundingClientRect();
-  var vh = window.innerHeight;
-  var boxH = Math.min(200, box.scrollHeight || 200);
-  // Always prefer below; only go above if there genuinely is no room below
-  // and more room above — in practice the keyboard makes "above" useless,
-  // so we clamp to below and let the dropdown scroll internally instead.
-  var top = r.bottom;
-  // ensure it doesn't start below the visible area
-  if(top + 80 > vh) top = Math.max(r.top - boxH, r.bottom);
-  box.style.left = r.left + "px";
-  box.style.top  = top + "px";
-  box.style.width = Math.max(r.width, 180) + "px";
-  box.style.maxHeight = Math.max(vh - top - 10, 80) + "px";
-}
 
-/* Reposition when keyboard resizes the viewport */
-if(window.visualViewport){
-  window.visualViewport.addEventListener("resize", function(){
-    if(document.getElementById("suggestions").style.display === "block") positionBox("iName","suggestions");
-    if(document.getElementById("sizeSuggestions").style.display === "block") positionBox("iSize","sizeSuggestions");
-    if(document.getElementById("citySuggestions").style.display === "block") positionBox("city","citySuggestions");
-  });
-}
-
-/* Reposition open dropdowns on scroll */
-window.addEventListener("scroll", function(){
-  if(document.getElementById("suggestions").style.display === "block") positionBox("iName","suggestions");
-  if(document.getElementById("sizeSuggestions").style.display === "block") positionBox("iSize","sizeSuggestions");
-  if(document.getElementById("citySuggestions").style.display === "block") positionBox("city","citySuggestions");
-}, {passive:true});
-
-/* Also reposition on every touch-scroll (iOS sends scroll late) */
-document.addEventListener("touchmove", function(){
-  if(document.getElementById("suggestions").style.display === "block") positionBox("iName","suggestions");
-}, {passive:true});
-
-/* ══ Saved orders (device log) ══ */
-var ORDERS = [];
-var pendingId = null;
-
-function loadOrders(){
-  try{ var r = localStorage.getItem("tc_orders"); if(r) ORDERS = JSON.parse(r); }catch(e){ ORDERS = []; }
-  ORDERS.forEach(function(o){ if(o.synced === undefined) o.synced = false; });
-  updateBadge();
-}
-function persistOrders(){
-  try{ localStorage.setItem("tc_orders", JSON.stringify(ORDERS)); }
-  catch(e){ alert("Could not save the order locally — storage may be full."); }
-}
 function staffCode(){
   var c = (SETUP.code || "").trim().toUpperCase();
   if(!c) c = (SETUP.user || "").trim().toUpperCase().replace(/[^A-Z]/g,"").slice(0,3);
@@ -1748,7 +1696,6 @@ function onSearch(){
       <span>${n}</span><span class="sug-price">₹${p.toLocaleString('en-IN')}</span>
     </div>`
   ).join("");
-  positionBox("iName", "suggestions");
   box.style.display="block";
 }
 
@@ -1772,7 +1719,6 @@ function renderSizes(list){
   box.innerHTML = list.map(s=>
     `<div class="sug-item" data-size="${s}"><span>${s}</span></div>`
   ).join("");
-  positionBox("iSize", "sizeSuggestions");
   box.style.display="block";
 }
 
@@ -1794,7 +1740,6 @@ function onCitySearch(){
   box.innerHTML = matches.map(c=>
     `<div class="sug-item" data-city="${c}"><span>${c}</span></div>`
   ).join("");
-  positionBox("city", "citySuggestions");
   box.style.display="block";
 }
 
